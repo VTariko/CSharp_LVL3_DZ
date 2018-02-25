@@ -8,7 +8,17 @@
         Background="{DynamicResource WindowBackgroundBrush}"
         Title="Mail Sender by VT" Height="350" Width="525">
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <DockPanel LastChildFill="True" Margin="5">
+            <Label Content="Заголовок:" DockPanel.Dock="Top" />
+            <TextBox x:Name="tbSubject" DockPanel.Dock="Top" />
+            <Label  Content="Текст письма:" DockPanel.Dock="Top"/>
+            <TextBox x:Name="tbBody" />
+        </DockPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1">
             <PasswordBox Name="passwordBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"
                          Margin="2" />
             <Button x:Name="btnSendEmail" Content="Рассылка" Margin="2" Click="BtnSendEmail_OnClick" />

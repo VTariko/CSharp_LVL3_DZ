@@ -10,14 +10,14 @@ namespace WpfMailSender
 {
     public class EmailSendServiceClass
     {
-        public string SendMsg(string pwd)
+        public string SendMsg(string pwd, string subject, string body)
         {
             foreach (string mail in Common.LMails)
             {
                 using (MailMessage mm = new MailMessage(Common.SenderMail, mail))
                 {
-                    mm.Subject = Common.MsgSubject;
-                    mm.Body = Common.MsgBody;
+                    mm.Subject = subject;
+                    mm.Body = body;
                     mm.IsBodyHtml = false;
 
                     using (SmtpClient sc = new SmtpClient(Common.Host, Common.Port))
