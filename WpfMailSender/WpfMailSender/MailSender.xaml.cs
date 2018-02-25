@@ -22,43 +22,18 @@ namespace WpfMailSender
     /// </summary>
     public partial class MailSender : Window
     {
+        private EmailSendServiceClass sendService;
+
         public MailSender()
         {
             InitializeComponent();
+            sendService = new EmailSendServiceClass();
         }
 
         private void BtnSendEmail_OnClick(object sender, RoutedEventArgs e)
         {
-            SendEndWindow sew;
-
-            string pwd = passwordBox.Password;
-
-            foreach (string mail in Common.LMails)
-            {
-                using (MailMessage mm = new MailMessage(Common.SenderMail, mail))
-                {
-                    mm.Subject = Common.MsgSubject;
-                    mm.Body = Common.MsgBody;
-                    mm.IsBodyHtml = false;
-
-                    using (SmtpClient sc = new SmtpClient(Common.Host, Common.Port))
-                    {
-                        sc.EnableSsl = true;
-                        sc.Credentials = new NetworkCredential(Common.SenderMail, pwd);
-                        try
-                        {
-                            sc.Send(mm);
-                        }
-                        catch (Exception ex)
-                        {
-                            sew = new SendEndWindow($"Невозможно отправить письмо:{Environment.NewLine}{ex}");
-                            sew.ShowDialog();
-                        }
-                    }
-                }
-            }
-
-            sew = new SendEndWindow("Работа завершена!");
+            string res = sendService.SendMsg(passwordBox.Password);
+            SendEndWindow sew = new SendEndWindow(res);
             sew.ShowDialog();
         }
     }
