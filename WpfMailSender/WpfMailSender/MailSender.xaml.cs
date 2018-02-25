@@ -56,14 +56,14 @@ namespace WpfMailSender
                         catch (Exception ex)
                         {
                             sew = new SendEndWindow($"Невозможно отправить письмо:{Environment.NewLine}{ex}");
-                            sew.Show();
+                            sew.ShowDialog();
                         }
                     }
                 }
             }
 
             sew = new SendEndWindow("Работа завершена!");
-            sew.Show();
+            sew.ShowDialog();
         }
     }
 }

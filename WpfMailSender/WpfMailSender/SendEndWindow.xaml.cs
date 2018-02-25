@@ -19,11 +19,18 @@ namespace WpfMailSender
     /// </summary>
     public partial class SendEndWindow : Window
     {
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public SendEndWindow()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Конструктор с передачей текста в соответстующий блок
+        /// </summary>
+        /// <param name="text"></param>
         public SendEndWindow(string text)
         {
             InitializeComponent();
