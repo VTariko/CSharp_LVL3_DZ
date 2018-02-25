@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfMailSender"
         mc:Ignorable="d"
+        Background="{DynamicResource WindowBackgroundBrush}"
         Title="Mail Sender by VT" Height="350" Width="525">
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">

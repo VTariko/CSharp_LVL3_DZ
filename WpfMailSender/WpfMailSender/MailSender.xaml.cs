@@ -29,6 +29,7 @@ namespace WpfMailSender
 
         private void BtnSendEmail_OnClick(object sender, RoutedEventArgs e)
         {
+            SendEndWindow sew;
             //Список получателя и адрес отправителя будем брать из БД
             List<string> lMails = new List<string>();
             string senderMail = "";
@@ -54,13 +55,15 @@ namespace WpfMailSender
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show($"Невозможно отправить письмо:{Environment.NewLine}{ex}");
+                            sew = new SendEndWindow($"Невозможно отправить письмо:{Environment.NewLine}{ex}");
+                            sew.Show();
                         }
                     }
                 }
             }
 
-            MessageBox.Show("Рассылка завершена!");
+            sew = new SendEndWindow("Работа завершена!");
+            sew.Show();
         }
     }
 }
