@@ -29,7 +29,38 @@ namespace WpfMailSender
 
         private void BtnSendEmail_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            //Список получателя и адрес отправителя будем брать из БД
+            List<string> lMails = new List<string>();
+            string senderMail = "";
+            string pwd = passwordBox.Password;
+            // Хост и порт будем брать из БД
+            string host = "";
+            int port = 25;
+            foreach (string mail in lMails)
+            {
+                using (MailMessage mm = new MailMessage(senderMail, mail))
+                {
+                    mm.Subject = "C# Mail Sender Work";
+                    mm.Body = "It's real work!";
+                    mm.IsBodyHtml = false;
+
+                    using (SmtpClient sc = new SmtpClient(host, port))
+                    {
+                        sc.EnableSsl = true;
+                        sc.Credentials = new NetworkCredential(senderMail, pwd);
+                        try
+                        {
+                            sc.Send(mm);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Невозможно отправить письмо:{Environment.NewLine}{ex}");
+                        }
+                    }
+                }
+            }
+
+            MessageBox.Show("Рассылка завершена!");
         }
     }
 }
