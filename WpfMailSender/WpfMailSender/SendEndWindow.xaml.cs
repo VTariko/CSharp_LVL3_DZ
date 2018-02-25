@@ -27,7 +27,7 @@ namespace WpfMailSender
         public SendEndWindow(string text)
         {
             InitializeComponent();
-            this.lblSendEnd.Content = text;
+            this.tbSendEnd.Text = text;
         }
 
         private void BtnOk_OnClick(object sender, RoutedEventArgs e)
