@@ -17,8 +17,9 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <TextBlock Name="tbSendEnd" Text="The End!" HorizontalAlignment="Center" VerticalAlignment="Center"
-                       TextWrapping="Wrap" Foreground="{DynamicResource TextBrush}"/>
-            <Button Grid.Row="1" Name="btnOk" Content="OK" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"
+                       TextWrapping="Wrap" Foreground="{DynamicResource TextBrush}" />
+            <Button Grid.Row="1" Name="btnOk" Content="OK" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Margin="10"
                     Width="100" Click="BtnOk_OnClick" />
         </Grid>
     </Border>

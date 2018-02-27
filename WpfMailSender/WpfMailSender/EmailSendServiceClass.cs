@@ -8,8 +8,18 @@ using System.Threading.Tasks;
 
 namespace WpfMailSender
 {
+    /// <summary>
+    /// Вспомогательный класс отправки сообщения
+    /// </summary>
     public class EmailSendServiceClass
     {
+        /// <summary>
+        /// Рассылка сообщений
+        /// </summary>
+        /// <param name="pwd">Пароль отправителя</param>
+        /// <param name="subject">Заголок письма</param>
+        /// <param name="body">Тело письма</param>
+        /// <returns></returns>
         public string SendMsg(string pwd, string subject, string body)
         {
             foreach (string mail in Common.LMails)

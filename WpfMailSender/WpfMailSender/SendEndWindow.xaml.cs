@@ -37,6 +37,11 @@ namespace WpfMailSender
             this.tbSendEnd.Text = text;
         }
 
+        /// <summary>
+        /// Обработка нажатия кнопки "Ок"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOk_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();

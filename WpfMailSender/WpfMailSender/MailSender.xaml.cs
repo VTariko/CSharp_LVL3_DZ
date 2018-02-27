@@ -22,6 +22,9 @@ namespace WpfMailSender
     /// </summary>
     public partial class MailSender : Window
     {
+        /// <summary>
+        /// Объект, выполняющий рассылку
+        /// </summary>
         private EmailSendServiceClass sendService;
 
         public MailSender()
