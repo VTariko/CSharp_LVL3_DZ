@@ -117,5 +117,8 @@
   <ItemGroup>
     <Resource Include="Images\now.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreateDb.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
