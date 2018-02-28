@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace WpfMailSender
 {
     /// <summary>
-    /// Interaction logic for MailSender.xaml
+    /// Класс, отвечающий за интерфейс
     /// </summary>
     public partial class MailSender : Window
     {
         public MailSender()
         {
             InitializeComponent();
+        }
+
+        private void MiClose_OnClick(Object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

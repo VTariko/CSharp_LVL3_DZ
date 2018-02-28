@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SchedulerClass.cs" />
     <Page Include="MailSender.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,10 +63,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppConfigClass.cs" />
+    <Compile Include="DBClass.cs" />
+    <Compile Include="EmailSendServiceClass.cs" />
     <Compile Include="MailSender.xaml.cs">
       <DependentUpon>MailSender.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

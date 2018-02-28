@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfMailSender"
         mc:Ignorable="d"
-        Title="MailSender" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Background="{DynamicResource WindowBackgroundBrush}"
+        Title="MailSender by VT" Height="350" Width="525">
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top" Height="25" VerticalAlignment="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Name="miClose" Header="Закрыть" Click="MiClose_OnClick"/>
+            </MenuItem>
+        </Menu>
+        <TabControl DockPanel.Dock="Top">
+            <TabItem Header="Формирование группы рассылки"></TabItem>
+            <TabItem Header="Планировщик"></TabItem>
+            <TabItem Header="Редактор писем"></TabItem>
+            <TabItem Header="Статистика"></TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>
