@@ -1,33 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Net;
-using System.Net.Mail;
+﻿using System.Windows;
 
-namespace WpfMailSender
+namespace WpfTestMailSender
 {
     /// <summary>
-    /// Interaction logic for MailSender.xaml
+    /// Interaction logic for TestMailSender.xaml
     /// </summary>
-    public partial class MailSender : Window
+    public partial class TestMailSender : Window
     {
         /// <summary>
         /// Объект, выполняющий рассылку
         /// </summary>
         private EmailSendServiceClass sendService;
 
-        public MailSender()
+        public TestMailSender()
         {
             InitializeComponent();
             sendService = new EmailSendServiceClass();
