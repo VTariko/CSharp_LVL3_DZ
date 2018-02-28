@@ -26,6 +26,8 @@ namespace WpfMailSender
             cbSenderSelect.ItemsSource = VariablesClass.Senders;
             cbSenderSelect.DisplayMemberPath = "Key";
             cbSenderSelect.SelectedValuePath = "Value";
+            DbClass db = new DbClass();
+            dgEmails.ItemsSource = db.Emails;
         }
 
         private void MiClose_OnClick(Object sender, RoutedEventArgs e)

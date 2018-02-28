@@ -9,7 +9,10 @@ namespace WpfMailSender
     /// <summary>
     /// Класс для работы с базой данных
     /// </summary>
-    class DbClass
+    public class DbClass
     {
+        private EmailsDataContext emails = new EmailsDataContext();
+
+        public IQueryable<Email> Emails => emails.Emails.Select(e => e);
     }
 }
