@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfMailSender"
         mc:Ignorable="d"
         Background="{DynamicResource WindowBackgroundBrush}"
-        Icon="Images/email.png"
+        Icon="Resources/Images/email.png"
         Title="MailSender by VT" Height="450" Width="790">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Height="25" VerticalAlignment="Top">
@@ -25,15 +25,15 @@
                             </ComboBox>
                             <Button Name="btnAddSender" VerticalAlignment="Stretch" ToolTip="Добавить" MinWidth="25"
                                     Width="25">
-                                <Image Source="Images/plus.png"></Image>
+                                <Image Source="Resources/Images/plus.png"></Image>
                             </Button>
                             <Button Name="btnEditSender" VerticalAlignment="Stretch" ToolTip="Редактировать"
                                     MinWidth="25" Width="25">
-                                <Image Source="Images/edit.png"></Image>
+                                <Image Source="Resources/Images/edit.png"></Image>
                             </Button>
                             <Button Name="btnDelSender" VerticalAlignment="Stretch" ToolTip="Удалить" MinWidth="25"
                                     Width="25">
-                                <Image Source="Images/delete.png"></Image>
+                                <Image Source="Resources/Images/delete.png"></Image>
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
@@ -62,7 +62,7 @@
                     <Button Grid.Column="1" Grid.Row="2" Margin="3">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="Images/clock.png" />
+                                <Image Source="Resources/Images/clock.png" />
                                 <TextBlock Text="Отправить запланировано" VerticalAlignment="Center" Margin="3"/>
                             </StackPanel>
                         </Button.Content>
@@ -70,7 +70,7 @@
                     <Button Grid.Column="1" Grid.Row="3" Margin="3">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="Images/now.png" />
+                                <Image Source="Resources/Images/now.png" />
                                 <TextBlock Text="Отправить сразу" VerticalAlignment="Center" Margin="3" />
                             </StackPanel>
                         </Button.Content>
