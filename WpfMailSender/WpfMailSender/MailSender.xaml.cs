@@ -23,6 +23,9 @@ namespace WpfMailSender
         public MailSender()
         {
             InitializeComponent();
+            cbSenderSelect.ItemsSource = VariablesClass.Senders;
+            cbSenderSelect.DisplayMemberPath = "Key";
+            cbSenderSelect.SelectedValuePath = "Value";
         }
 
         private void MiClose_OnClick(Object sender, RoutedEventArgs e)

@@ -21,9 +21,7 @@
                         <ToolBar Name="tbSender" Height="30">
                             <Label Name="lSender" Content="Выбрать отправителя" Width="130" VerticalAlignment="Center" />
                             <ComboBox Name="cbSenderSelect" Width="270" ToolTip="Выберите e-mail отправителя"
-                                      VerticalAlignment="Stretch">
-                                <ComboBoxItem Content="test@ksergey.ru"></ComboBoxItem>
-                                <ComboBoxItem Content="spam1@ksergey.ru"></ComboBoxItem>
+                                      VerticalAlignment="Stretch" >
                             </ComboBox>
                             <Button Name="btnAddSender" VerticalAlignment="Stretch" ToolTip="Добавить" MinWidth="25"
                                     Width="25">
