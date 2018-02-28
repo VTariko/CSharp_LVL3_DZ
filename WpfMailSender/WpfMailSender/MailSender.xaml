@@ -6,17 +6,81 @@
         xmlns:local="clr-namespace:WpfMailSender"
         mc:Ignorable="d"
         Background="{DynamicResource WindowBackgroundBrush}"
-        Title="MailSender by VT" Height="350" Width="525">
+        Icon="Images/email.png"
+        Title="MailSender by VT" Height="450" Width="790">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Height="25" VerticalAlignment="Top">
             <MenuItem Header="Файл">
-                <MenuItem Name="miClose" Header="Закрыть" Click="MiClose_OnClick"/>
+                <MenuItem Name="miClose" Header="Закрыть" Click="MiClose_OnClick" />
             </MenuItem>
         </Menu>
         <TabControl DockPanel.Dock="Top">
-            <TabItem Header="Формирование группы рассылки"></TabItem>
-            <TabItem Header="Планировщик"></TabItem>
-            <TabItem Header="Редактор писем"></TabItem>
+            <TabItem Header="Формирование группы рассылки">
+                <Grid>
+                    <ToolBarTray Height="65" VerticalAlignment="Top">
+                        <ToolBar Name="tbSender" Height="30">
+                            <Label Name="lSender" Content="Выбрать отправителя" Width="130" VerticalAlignment="Center" />
+                            <ComboBox Name="cbSenderSelect" Width="270" ToolTip="Выберите e-mail отправителя"
+                                      VerticalAlignment="Stretch">
+                                <ComboBoxItem Content="test@ksergey.ru"></ComboBoxItem>
+                                <ComboBoxItem Content="spam1@ksergey.ru"></ComboBoxItem>
+                            </ComboBox>
+                            <Button Name="btnAddSender" VerticalAlignment="Stretch" ToolTip="Добавить" MinWidth="25"
+                                    Width="25">
+                                <Image Source="Images/plus.png"></Image>
+                            </Button>
+                            <Button Name="btnEditSender" VerticalAlignment="Stretch" ToolTip="Редактировать"
+                                    MinWidth="25" Width="25">
+                                <Image Source="Images/edit.png"></Image>
+                            </Button>
+                            <Button Name="btnDelSender" VerticalAlignment="Stretch" ToolTip="Удалить" MinWidth="25"
+                                    Width="25">
+                                <Image Source="Images/delete.png"></Image>
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Планировщик">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Column="1" VerticalAlignment="Stretch">
+                        <Calendar Name="calendar" SelectionMode="MultipleRange">
+                        </Calendar>
+                    </Viewbox>
+                    <TextBox Grid.Column="1" Grid.Row="1" Name="tbTimePicker" Margin="5"
+                             HorizontalContentAlignment="Center" />
+                    <Button Grid.Column="1" Grid.Row="2" Margin="3">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Images/clock.png" />
+                                <TextBlock Text="Отправить запланировано" VerticalAlignment="Center" Margin="3"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button Grid.Column="1" Grid.Row="3" Margin="3">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Images/now.png" />
+                                <TextBlock Text="Отправить сразу" VerticalAlignment="Center" Margin="3" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Редактор писем">
+                <RichTextBox></RichTextBox>
+            </TabItem>
             <TabItem Header="Статистика"></TabItem>
         </TabControl>
     </DockPanel>
