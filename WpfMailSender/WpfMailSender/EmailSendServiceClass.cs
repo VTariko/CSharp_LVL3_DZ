@@ -17,7 +17,7 @@ namespace WpfMailSender
         /// Рассылка сообщений
         /// </summary>
         /// <param name="pwd">Пароль отправителя</param>
-        /// <param name="subject">Заголок письма</param>
+        /// <param name="subject">Заголовок письма</param>
         /// <param name="body">Тело письма</param>
         /// <returns></returns>
         public string SendMsg(string pwd, string subject, string body)
@@ -26,7 +26,7 @@ namespace WpfMailSender
             {
                 using (MailMessage mm = new MailMessage(Common.SenderMail, mail))
                 {
-                    mm.Subject = subject;
+                    mm.Subject = $"{subject}";
                     mm.Body = body;
                     mm.IsBodyHtml = false;
 

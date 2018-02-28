@@ -16,7 +16,7 @@
             <Label Content="Заголовок:" DockPanel.Dock="Top" />
             <TextBox x:Name="tbSubject" DockPanel.Dock="Top" />
             <Label Content="Текст письма:" DockPanel.Dock="Top" />
-            <TextBox x:Name="tbBody" />
+            <TextBox x:Name="tbBody" AcceptsReturn="True" TextWrapping="Wrap" />
         </DockPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1">
             <PasswordBox Name="passwordBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"
