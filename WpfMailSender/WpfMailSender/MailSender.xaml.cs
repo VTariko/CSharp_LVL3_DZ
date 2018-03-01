@@ -38,17 +38,39 @@ namespace WpfMailSender
 
         private void BtnSendNow_OnClick(object sender, RoutedEventArgs e)
         {
+            EmailSendServiceClass emailSender = CreateEmailSendService();
+            emailSender.SendMail((IQueryable<Email>)dgEmails.ItemsSource);
+        }
+
+        private void BtnSendPlan_OnClick(object sender, RoutedEventArgs e)
+        {
+            SchedulerClass sc = new SchedulerClass();
+            // TODO: Добавлять время с TimePicker'а
+            DateTime dtSendDateTime = (ldSchedulDateTimes.SelectedDate ?? DateTime.Today);
+            if (dtSendDateTime < DateTime.Now)
+            {
+                SendEndWindow sew =
+                    new SendEndWindow("Дата и время отправки писем не могут быть раньше, чем настоящее время");
+                sew.ShowDialog();
+                return;
+            }
+
+            EmailSendServiceClass emailSender = CreateEmailSendService();
+            sc.SendEmails(dtSendDateTime, emailSender, (IQueryable<Email>)dgEmails.ItemsSource);
+        }
+
+        private EmailSendServiceClass CreateEmailSendService()
+        {
             string login = cbSenderSelect.Text;
             object passObj = cbSenderSelect.SelectedValue;
             if (passObj == null || string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(passObj.ToString()))
             {
                 SendEndWindow sew = new SendEndWindow("Выберите отправителя!");
                 sew.ShowDialog();
-                return;
+                return null;
             }
 
-            EmailSendServiceClass emailSender = new EmailSendServiceClass(login, passObj.ToString());
-            emailSender.SendMail((IQueryable<Email>)dgEmails.ItemsSource);
+            return new EmailSendServiceClass(login, passObj.ToString());
         }
     }
 }

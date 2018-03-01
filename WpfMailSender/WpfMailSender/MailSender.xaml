@@ -54,12 +54,12 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Viewbox Grid.Column="1" VerticalAlignment="Stretch">
-                        <Calendar Name="calendar" SelectionMode="MultipleRange">
+                        <Calendar Name="ldSchedulDateTimes" SelectionMode="MultipleRange">
                         </Calendar>
                     </Viewbox>
                     <TextBox Grid.Column="1" Grid.Row="1" Name="tbTimePicker" Margin="5"
                              HorizontalContentAlignment="Center" />
-                    <Button Name="btnSendPlan" Grid.Column="1" Grid.Row="2" Margin="3">
+                    <Button Name="btnSendPlan" Grid.Column="1" Grid.Row="2" Margin="3" Click="BtnSendPlan_OnClick">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="Resources/Images/clock.png" />
