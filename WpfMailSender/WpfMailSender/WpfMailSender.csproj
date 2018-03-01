@@ -60,12 +60,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Emails.dbml</DependentUpon>
     </Compile>
-    <Compile Include="PasswordClass.cs" />
-    <Compile Include="SchedulerClass.cs" />
+    <Compile Include="Logic\PasswordClass.cs" />
+    <Compile Include="Logic\SchedulerClass.cs" />
     <Compile Include="SendEndWindow.xaml.cs">
       <DependentUpon>SendEndWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VariablesClass.cs" />
+    <Compile Include="Logic\VariablesClass.cs" />
     <Page Include="MailSender.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,7 +76,7 @@
     </Compile>
     <Compile Include="AppConfigClass.cs" />
     <Compile Include="DbClass.cs" />
-    <Compile Include="EmailSendServiceClass.cs" />
+    <Compile Include="Logic\EmailSendServiceClass.cs" />
     <Compile Include="MailSender.xaml.cs">
       <DependentUpon>MailSender.xaml</DependentUpon>
       <SubType>Code</SubType>

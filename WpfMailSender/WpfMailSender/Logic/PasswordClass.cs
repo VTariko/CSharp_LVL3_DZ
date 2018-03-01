@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace WpfMailSender
+namespace WpfMailSender.Logic
 {
     /// <summary>
     /// Класс для работы с паролями
