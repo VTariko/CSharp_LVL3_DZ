@@ -11,8 +11,8 @@ namespace WpfMailSender
     /// </summary>
     public class DbClass
     {
-        private EmailsDataContext emails = new EmailsDataContext();
+        private EmailsDataContext _emails = new EmailsDataContext();
 
-        public IQueryable<Email> Emails => emails.Emails.Select(e => e);
+        public IQueryable<Email> Emails => _emails.Emails.Select(e => e);
     }
 }

@@ -10,7 +10,7 @@ namespace WpfMailSender.Logic
     class PasswordClass
     {
         private static readonly string SaltKey = "S@LT&KEY";
-        private static readonly string VIKey = "@1B2c3D4e5F6g7H8";
+        private static readonly string ViKey = "@1B2c3D4e5F6g7H8";
 
         /// <summary>
         /// Метод шифрования
@@ -23,14 +23,14 @@ namespace WpfMailSender.Logic
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
 
             byte[] keyBytes = new Rfc2898DeriveBytes(sharedSecret, Encoding.ASCII.GetBytes(SaltKey)).GetBytes(256 / 8);
-            var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.Zeros };
-            var encryptor = symmetricKey.CreateEncryptor(keyBytes, Encoding.ASCII.GetBytes(VIKey));
+            RijndaelManaged symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.Zeros };
+            ICryptoTransform encryptor = symmetricKey.CreateEncryptor(keyBytes, Encoding.ASCII.GetBytes(ViKey));
 
             byte[] cipherTextBytes;
 
-            using (var memoryStream = new MemoryStream())
+            using (MemoryStream memoryStream = new MemoryStream())
             {
-                using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                using (CryptoStream cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
                 {
                     cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
                     cryptoStream.FlushFinalBlock();
@@ -51,11 +51,11 @@ namespace WpfMailSender.Logic
         public static string Decrypt(byte[] cipherTextBytes, string sharedSecret)
         {
             byte[] keyBytes = new Rfc2898DeriveBytes(sharedSecret, Encoding.ASCII.GetBytes(SaltKey)).GetBytes(256 / 8);
-            var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.None };
+            RijndaelManaged symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.None };
 
-            var decryptor = symmetricKey.CreateDecryptor(keyBytes, Encoding.ASCII.GetBytes(VIKey));
-            var memoryStream = new MemoryStream(cipherTextBytes);
-            var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
+            ICryptoTransform decryptor = symmetricKey.CreateDecryptor(keyBytes, Encoding.ASCII.GetBytes(ViKey));
+            MemoryStream memoryStream = new MemoryStream(cipherTextBytes);
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
             byte[] plainTextBytes = new byte[cipherTextBytes.Length];
 
             int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
