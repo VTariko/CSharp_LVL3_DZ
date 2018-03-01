@@ -59,7 +59,7 @@
                     </Viewbox>
                     <TextBox Grid.Column="1" Grid.Row="1" Name="tbTimePicker" Margin="5"
                              HorizontalContentAlignment="Center" />
-                    <Button Grid.Column="1" Grid.Row="2" Margin="3">
+                    <Button Name="btnSendPlan" Grid.Column="1" Grid.Row="2" Margin="3">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="Resources/Images/clock.png" />
@@ -67,11 +67,11 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
-                    <Button Grid.Column="1" Grid.Row="3" Margin="3">
+                    <Button Name="btnSendNow" Grid.Column="1" Grid.Row="3" Margin="3" Click="BtnSendNow_OnClick">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="Resources/Images/now.png" />
-                                <TextBlock Text="Отправить сразу" VerticalAlignment="Center" Margin="3" />
+                                <TextBlock Text="Отправить сразу" VerticalAlignment="Center" Margin="3"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>

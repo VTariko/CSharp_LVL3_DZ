@@ -34,5 +34,20 @@ namespace WpfMailSender
         {
             this.Close();
         }
+
+        private void BtnSendNow_OnClick(object sender, RoutedEventArgs e)
+        {
+            string login = cbSenderSelect.Text;
+            object passObj = cbSenderSelect.SelectedValue;
+            if (passObj == null || string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(passObj.ToString()))
+            {
+                SendEndWindow sew = new SendEndWindow("Выберите отправителя!");
+                sew.ShowDialog();
+                return;
+            }
+
+            EmailSendServiceClass emailSender = new EmailSendServiceClass(login, passObj.ToString());
+            emailSender.SendMail((IQueryable<Email>)dgEmails.ItemsSource);
+        }
     }
 }
