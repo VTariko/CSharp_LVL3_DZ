@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodePasswordDll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Binaries\CodePasswordDll.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -63,7 +67,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Emails.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Logic\PasswordClass.cs" />
     <Compile Include="Logic\SchedulerClass.cs" />
     <Compile Include="SendEndWindow.xaml.cs">
       <DependentUpon>SendEndWindow.xaml</DependentUpon>
@@ -147,6 +150,7 @@
     <Resource Include="Resources\Images\now.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Binaries\CodePasswordDll.dll" />
     <Content Include="Resources\Binaries\Xceed.Wpf.Toolkit.dll" />
     <Content Include="Resources\CreateDb.sql" />
   </ItemGroup>
