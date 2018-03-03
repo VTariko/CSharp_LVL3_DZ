@@ -83,7 +83,7 @@ namespace WpfMailSender.Logic
             string res = string.Empty;
             using (MailMessage mm = new MailMessage(_login, mail))
             {
-                mm.Subject = $"{name}! {_subject}";
+                mm.Subject = $"{_subject}";
                 mm.Body = _body;
                 mm.IsBodyHtml = false;
                 using (SmtpClient sc = new SmtpClient(_smtpServer, _smtpPort))

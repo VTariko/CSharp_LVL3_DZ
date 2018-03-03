@@ -22,6 +22,7 @@ namespace WpfMailSender
         public SendEndWindow(string text)
         {
             InitializeComponent();
+            this.Topmost = true;
             this.tbSendEnd.Text = text;
         }
 
