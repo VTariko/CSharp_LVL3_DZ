@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 
-namespace WpfMailSender.Logic
+namespace EmailSendService
 {
     /// <summary>
     /// Класс, который непосредственно отвечает за рассылку писем
     /// </summary>
-    class EmailSendServiceClass
+    public class EmailSendServiceClass
     {
         #region Поля
 
@@ -61,23 +61,30 @@ namespace WpfMailSender.Logic
             _body = body;
         }
 
-        public void SendMail(IQueryable<Email> emails)
+        /// <summary>
+        /// Отправка писем по списку адресатов
+        /// </summary>
+        /// <param name="emails">Список адресатов</param>
+        public string SendMail(Dictionary<string, string> emails)
         {
-            SendEndWindow sew;
-            foreach (Email email in emails)
+            foreach (KeyValuePair<string, string> email in emails)
             {
-                string res = SendMail(email.Email1, email.Name);
+                string res = SendMail(email.Key, email.Value);
                 if (!string.IsNullOrWhiteSpace(res))
                 {
-                    sew = new SendEndWindow(res);
-                    sew.ShowDialog();
-                    return;
+                    return res;
                 }
             }
-            sew = new SendEndWindow("Работа завершена!");
-            sew.ShowDialog();
+
+            return "Работа завершена!";
         }
 
+        /// <summary>
+        /// Отправка письма конкретному получателю
+        /// </summary>
+        /// <param name="mail">E-mail получателя</param>
+        /// <param name="name">Имя получателя</param>
+        /// <returns></returns>
         private string SendMail(string mail, string name)
         {
             string res = string.Empty;
@@ -102,7 +109,6 @@ namespace WpfMailSender.Logic
                     }
                 }
             }
-
             return res;
         }
     }

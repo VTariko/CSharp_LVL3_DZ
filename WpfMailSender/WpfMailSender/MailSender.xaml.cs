@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using EmailSendService;
 using WpfMailSender.Logic;
 
 namespace WpfMailSender
@@ -36,7 +28,9 @@ namespace WpfMailSender
         private void BtnSendNow_OnClick(object sender, RoutedEventArgs e)
         {
             EmailSendServiceClass emailSender = CreateEmailSendService();
-            emailSender?.SendMail((IQueryable<Email>) dgEmails.ItemsSource);
+            Dictionary<string, string> emails =
+                ((IQueryable<Email>) dgEmails.ItemsSource).ToDictionary(k => k.Email1, p => p.Name);
+            emailSender?.SendMail(emails);
         }
 
         private void BtnSendPlan_OnClick(object sender, RoutedEventArgs e)
@@ -100,11 +94,6 @@ namespace WpfMailSender
 
             return new EmailSendServiceClass(login, passObj.ToString(), smtpServer, Convert.ToInt32(smtpPortObj),
                 message);
-        }
-
-        private void BtnScheduler_OnClick(object sender, RoutedEventArgs e)
-        {
-            tiScheduler.IsSelected = true;
         }
 
         private void TscTabSwitcher_OnBtnPrevClick(object sender, RoutedEventArgs e)

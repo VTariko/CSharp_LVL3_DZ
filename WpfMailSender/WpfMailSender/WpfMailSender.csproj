@@ -82,7 +82,6 @@
     </Compile>
     <Compile Include="AppConfigClass.cs" />
     <Compile Include="DbClass.cs" />
-    <Compile Include="Logic\EmailSendServiceClass.cs" />
     <Compile Include="MailSender.xaml.cs">
       <DependentUpon>MailSender.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -158,6 +157,10 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmailSendService\EmailSendService.csproj">
+      <Project>{5760f937-540c-4843-8656-d7fcae6ac7dd}</Project>
+      <Name>EmailSendService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TabSwitcher\TabSwitcher.csproj">
       <Project>{6645184f-73e5-410f-861e-34be19a6559f}</Project>
       <Name>TabSwitcher</Name>

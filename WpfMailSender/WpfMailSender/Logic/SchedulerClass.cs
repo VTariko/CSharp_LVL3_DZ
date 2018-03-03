@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Threading;
+using EmailSendService;
 
 namespace WpfMailSender.Logic
 {
@@ -53,7 +55,8 @@ namespace WpfMailSender.Logic
         {
             if (_dtSend.ToShortTimeString() == DateTime.Now.ToShortTimeString())
             {
-                _emailSender.SendMail(_emails);
+                Dictionary<string, string> emails = _emails.ToDictionary(k => k.Email1, p => p.Name);
+                _emailSender.SendMail(emails);
                 _timer.Stop();
             }
         }
