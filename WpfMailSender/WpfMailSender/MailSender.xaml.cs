@@ -43,7 +43,14 @@ namespace WpfMailSender
         {
             SchedulerClass sc = new SchedulerClass();
             // TODO: Добавлять время с TimePicker'а
+            
             DateTime dtSendDateTime = (ldSchedulDateTimes.SelectedDate ?? DateTime.Today);
+            if (tpSchedulTimes.Value.HasValue)
+            {
+                int hours = tpSchedulTimes.Value.Value.Hour;
+                int minutes = tpSchedulTimes.Value.Value.Minute;
+                dtSendDateTime = dtSendDateTime.AddHours(hours).AddMinutes(minutes);
+            }
             if (dtSendDateTime < DateTime.Now)
             {
                 SendEndWindow sew =
