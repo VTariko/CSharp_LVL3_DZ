@@ -143,11 +143,21 @@ namespace TabSwitcher
 
         #endregion
 
+        /// <summary>
+        /// Обработка нажатия кнопки Следующий
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnNext_OnClick(object sender, RoutedEventArgs e)
         {
             BtnNextClick?.Invoke(sender, e);
         }
 
+        /// <summary>
+        /// Обработка нажатия кнопки Предыдущая
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnPrev_OnClick(object sender, RoutedEventArgs e)
         {
             BtnPrevClick?.Invoke(sender, e);
