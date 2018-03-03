@@ -24,9 +24,6 @@ namespace WpfMailSender
         public MailSender()
         {
             InitializeComponent();
-            cbSenderSelect.ItemsSource = VariablesClass.Senders;
-            cbSenderSelect.DisplayMemberPath = "Key";
-            cbSenderSelect.SelectedValuePath = "Value";
             DbClass db = new DbClass();
             dgEmails.ItemsSource = db.Emails;
         }
@@ -39,7 +36,7 @@ namespace WpfMailSender
         private void BtnSendNow_OnClick(object sender, RoutedEventArgs e)
         {
             EmailSendServiceClass emailSender = CreateEmailSendService();
-            emailSender.SendMail((IQueryable<Email>)dgEmails.ItemsSource);
+            emailSender?.SendMail((IQueryable<Email>) dgEmails.ItemsSource);
         }
 
         private void BtnSendPlan_OnClick(object sender, RoutedEventArgs e)
@@ -56,21 +53,51 @@ namespace WpfMailSender
             }
 
             EmailSendServiceClass emailSender = CreateEmailSendService();
-            sc.SendEmails(dtSendDateTime, emailSender, (IQueryable<Email>)dgEmails.ItemsSource);
+            if (emailSender != null)
+            {
+                sc.SendEmails(dtSendDateTime, emailSender, (IQueryable<Email>) dgEmails.ItemsSource);
+            }
         }
 
         private EmailSendServiceClass CreateEmailSendService()
         {
+            SendEndWindow sew;
             string login = cbSenderSelect.Text;
             object passObj = cbSenderSelect.SelectedValue;
             if (passObj == null || string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(passObj.ToString()))
             {
-                SendEndWindow sew = new SendEndWindow("Выберите отправителя!");
+                sew = new SendEndWindow("Выберите отправителя!");
                 sew.ShowDialog();
                 return null;
             }
 
-            return new EmailSendServiceClass(login, passObj.ToString());
+            string smtpServer = cbSmtpServerSelect.Text;
+            object smtpPortObj = cbSmtpServerSelect.SelectedValue;
+            if (smtpPortObj == null || string.IsNullOrWhiteSpace(smtpServer))
+            {
+                sew = new SendEndWindow("Выберите SMTP-сервер!");
+                sew.ShowDialog();
+                return null;
+            }
+
+            string message = new TextRange(rtbMessageBody.Document.ContentStart, rtbMessageBody.Document.ContentEnd)
+                .Text;
+
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                sew = new SendEndWindow("Письмо не заполнено");
+                sew.ShowDialog();
+                tiEditor.IsSelected = true;
+                return null;
+            }
+
+            return new EmailSendServiceClass(login, passObj.ToString(), smtpServer, Convert.ToInt32(smtpPortObj),
+                message);
+        }
+
+        private void BtnScheduler_OnClick(object sender, RoutedEventArgs e)
+        {
+            tiScheduler.IsSelected = true;
         }
     }
 }

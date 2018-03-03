@@ -25,12 +25,12 @@ namespace WpfMailSender.Logic
         /// <summary>
         /// smtp - server
         /// </summary>
-        private string _smtp = "smtp.yandex.ru";
+        private string _smtpServer;
 
         /// <summary>
         /// Порт для smtp-server
         /// </summary>
-        private int _smtpPort = 25;
+        private int _smtpPort;
 
         /// <summary>
         /// Тема письма для отправки
@@ -40,7 +40,7 @@ namespace WpfMailSender.Logic
         /// <summary>
         /// Текст письма для отправки
         /// </summary>
-        private string _body = "Wow! Work!";
+        private string _body;
 
         #endregion
 
@@ -49,10 +49,16 @@ namespace WpfMailSender.Logic
         /// </summary>
         /// <param name="login">Логин отрпавителя</param>
         /// <param name="password">Пароль отправителя</param>
-        public EmailSendServiceClass(string login, string password)
+        /// <param name="smtpServer">SMTP-сервер </param>
+        /// <param name="smtpPort">Порт SMTP-сервера</param>
+        /// <param name="body">Текст письма для отправки</param>
+        public EmailSendServiceClass(string login, string password, string smtpServer, int smtpPort, string body)
         {
             _login = login;
             _password = password;
+            _smtpServer = smtpServer;
+            _smtpPort = smtpPort;
+            _body = body;
         }
 
         public void SendMail(IQueryable<Email> emails)
@@ -60,7 +66,6 @@ namespace WpfMailSender.Logic
             SendEndWindow sew;
             foreach (Email email in emails)
             {
-                
                 string res = SendMail(email.Email1, email.Name);
                 if (!string.IsNullOrWhiteSpace(res))
                 {
@@ -81,7 +86,7 @@ namespace WpfMailSender.Logic
                 mm.Subject = $"{name}! {_subject}";
                 mm.Body = _body;
                 mm.IsBodyHtml = false;
-                using (SmtpClient sc = new SmtpClient(_smtp, _smtpPort))
+                using (SmtpClient sc = new SmtpClient(_smtpServer, _smtpPort))
                 {
                     sc.EnableSsl = true;
                     sc.DeliveryMethod = SmtpDeliveryMethod.Network;
