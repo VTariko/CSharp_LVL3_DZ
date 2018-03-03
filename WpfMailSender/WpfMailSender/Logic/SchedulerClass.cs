@@ -55,8 +55,6 @@ namespace WpfMailSender.Logic
             {
                 _emailSender.SendMail(_emails);
                 _timer.Stop();
-                SendEndWindow sew = new SendEndWindow("Письма отправлены!");
-                sew.ShowDialog();
             }
         }
     }
