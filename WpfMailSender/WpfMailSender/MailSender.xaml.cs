@@ -28,7 +28,7 @@ namespace WpfMailSender
             dgEmails.ItemsSource = db.Emails;
         }
 
-        private void MiClose_OnClick(Object sender, RoutedEventArgs e)
+        private void MiClose_OnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -105,6 +105,16 @@ namespace WpfMailSender
         private void BtnScheduler_OnClick(object sender, RoutedEventArgs e)
         {
             tiScheduler.IsSelected = true;
+        }
+
+        private void TscTabSwitcher_OnBtnPrevClick(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex--;
+        }
+
+        private void TscTabSwitcher_OnBtnNextClick(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex++;
         }
     }
 }

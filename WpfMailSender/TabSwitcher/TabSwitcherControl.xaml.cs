@@ -21,6 +21,13 @@ namespace TabSwitcher
     /// </summary>
     public partial class TabSwitcherControl : UserControl
     {
+        #region События
+
+        public event RoutedEventHandler BtnNextClick;
+        public event RoutedEventHandler BtnPrevClick;
+
+        #endregion
+
         #region Поля
 
         private bool _hideBtnPrev;
@@ -135,5 +142,15 @@ namespace TabSwitcher
         }
 
         #endregion
+
+        private void BtnNext_OnClick(object sender, RoutedEventArgs e)
+        {
+            BtnNextClick?.Invoke(sender, e);
+        }
+
+        private void BtnPrev_OnClick(object sender, RoutedEventArgs e)
+        {
+            BtnPrevClick?.Invoke(sender, e);
+        }
     }
 }

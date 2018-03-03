@@ -157,6 +157,11 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TabSwitcher\TabSwitcher.csproj">
+      <Project>{6645184f-73e5-410f-861e-34be19a6559f}</Project>
+      <Name>TabSwitcher</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
