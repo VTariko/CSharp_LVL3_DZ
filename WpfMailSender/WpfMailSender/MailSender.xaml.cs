@@ -18,6 +18,8 @@ namespace WpfMailSender
             InitializeComponent();
             DbClass db = new DbClass();
             dgEmails.ItemsSource = db.Emails;
+            controlSender.ComboBoxCollection = VariablesClass.Senders;
+            controlSmtpServer.ComboBoxCollection = VariablesClass.SmtpServers;
         }
 
         private void MiClose_OnClick(object sender, RoutedEventArgs e)
@@ -30,7 +32,9 @@ namespace WpfMailSender
             EmailSendServiceClass emailSender = CreateEmailSendService();
             Dictionary<string, string> emails =
                 ((IQueryable<Email>) dgEmails.ItemsSource).ToDictionary(k => k.Email1, p => p.Name);
-            emailSender?.SendMail(emails);
+            string res = emailSender?.SendMail(emails);
+            SendEndWindow sew = new SendEndWindow(res);
+            sew.ShowDialog();
         }
 
         private void BtnSendPlan_OnClick(object sender, RoutedEventArgs e)
@@ -63,17 +67,17 @@ namespace WpfMailSender
         private EmailSendServiceClass CreateEmailSendService()
         {
             SendEndWindow sew;
-            string login = cbSenderSelect.Text;
-            object passObj = cbSenderSelect.SelectedValue;
+            string login = controlSender.SelectedKey;
+            object passObj = controlSender.SelectedValue;
             if (passObj == null || string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(passObj.ToString()))
             {
                 sew = new SendEndWindow("Выберите отправителя!");
                 sew.ShowDialog();
                 return null;
             }
-
-            string smtpServer = cbSmtpServerSelect.Text;
-            object smtpPortObj = cbSmtpServerSelect.SelectedValue;
+            
+            string smtpServer = controlSmtpServer.SelectedKey;
+            object smtpPortObj = controlSmtpServer.SelectedValue;
             if (smtpPortObj == null || string.IsNullOrWhiteSpace(smtpServer))
             {
                 sew = new SendEndWindow("Выберите SMTP-сервер!");

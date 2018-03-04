@@ -8,7 +8,7 @@
              d:DesignHeight="30">
     <StackPanel Orientation="Horizontal">
         <Label Name="lblHeader" Width="130" VerticalAlignment="Center" />
-        <ComboBox Name="cbList" Width="270" ItemsSource="{Binding ComboBoxCollection}"
+        <ComboBox Name="cbList" Width="270" ItemsSource="{Binding _comboBoxCollection}"
                   DisplayMemberPath="Key"
                   SelectedValuePath="Value"/>
         <Button Name="btnAdd" Width="25" MinWidth="25" Click="BtnAdd_OnClick">

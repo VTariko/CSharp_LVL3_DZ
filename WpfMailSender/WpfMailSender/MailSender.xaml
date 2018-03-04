@@ -7,6 +7,7 @@
     xmlns:logic="clr-namespace:WpfMailSender.Logic"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="WpfMailSender.MailSender"
     xmlns:lib="clr-namespace:TabSwitcher;assembly=TabSwitcher"
+    xmlns:bcb="clr-namespace:BarComboBox;assembly=BarComboBox"
     mc:Ignorable="d"
     Background="{DynamicResource WindowBackgroundBrush}"
     Icon="Resources/Images/email.png"
@@ -24,42 +25,10 @@
                                             BtnNextClick="TscTabSwitcher_OnBtnNextClick" IsHideBtnPrev="True"/>
                     <ToolBarTray VerticalAlignment="Top" DockPanel.Dock="Top">
                         <ToolBar x:Name="tbSender" Height="30">
-                            <Label x:Name="lSender" Content="Выбрать отправителя" Width="130"
-                                   VerticalAlignment="Center" />
-                            <ComboBox x:Name="cbSenderSelect" Width="270" ToolTip="Выберите e-mail отправителя"
-                                      VerticalAlignment="Stretch"
-                                      ItemsSource="{Binding Source={x:Static logic:VariablesClass.Senders}}"
-                                      DisplayMemberPath="Key"
-                                      SelectedValuePath="Value" />
-                            <Button x:Name="btnAddSender" VerticalAlignment="Stretch" ToolTip="Добавить" MinWidth="25"
-                                    Width="25">
-                                <Image Source="Resources/Images/plus.png" />
-                            </Button>
-                            <Button x:Name="btnEditSender" VerticalAlignment="Stretch" ToolTip="Редактировать"
-                                    MinWidth="25" Width="25">
-                                <Image Source="Resources/Images/edit.png" />
-                            </Button>
-                            <Button x:Name="btnDelSender" VerticalAlignment="Stretch" ToolTip="Удалить" MinWidth="25"
-                                    Width="25">
-                                <Image Source="Resources/Images/delete.png" />
-                            </Button>
+                            <bcb:ToolBarControlButton Name="controlSender" LabelText="Выбрать отправителя" />
                         </ToolBar>
                         <ToolBar Band="1">
-                            <Label Content="Выбрать smtp-сервер" Width="130" VerticalAlignment="Center" />
-                            <ComboBox x:Name="cbSmtpServerSelect" Width="270" ToolTip="Выберите e-mail отправителя"
-                                      VerticalAlignment="Center"
-                                      ItemsSource="{Binding Source={x:Static logic:VariablesClass.SmtpServers}}"
-                                      DisplayMemberPath="Key"
-                                      SelectedValuePath="Value" />
-                            <Button x:Name="btnAddSmtpServer" MinHeight="25" MinWidth="25" Width="25" Height="25">
-                                <Image Source="Resources/Images/plus.png" />
-                            </Button>
-                            <Button x:Name="btnEditSmtpServer" MinHeight="25" MinWidth="25" Width="25" Height="25">
-                                <Image Source="Resources/Images/edit.png" />
-                            </Button>
-                            <Button x:Name="btnDelSmtpServer" MinHeight="25" MinWidth="25" Width="25" Height="25">
-                                <Image Source="Resources/Images/delete.png" />
-                            </Button>
+                            <bcb:ToolBarControlButton Name="controlSmtpServer" LabelText="Выбрать smtp-сервер" />
                         </ToolBar>
                         <ToolBar Band="1" Width="220">
                             <Label Content="Список адресатов" VerticalAlignment="Center" Width="120" />

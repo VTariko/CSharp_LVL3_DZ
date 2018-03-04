@@ -157,6 +157,10 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BarComboBox\BarComboBox.csproj">
+      <Project>{36b8f2ea-5cb5-4247-b3cb-00015c06c897}</Project>
+      <Name>BarComboBox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmailSendService\EmailSendService.csproj">
       <Project>{5760f937-540c-4843-8656-d7fcae6ac7dd}</Project>
       <Name>EmailSendService</Name>

@@ -9,13 +9,13 @@ namespace WpfMailSender.Logic
         /// <summary>
         /// Класс общих переменных
         /// </summary>
-        public static Dictionary<string, string> Senders { get; } = new Dictionary<string, string>
+        public static Dictionary<string, object> Senders { get; } = new Dictionary<string, object>
         {
             { "test@ksergey.ru", CodePassword.Decrypt(Convert.FromBase64String("4s/IxrfYscz14TwNZpYclQ=="), "test@ksergey.ru") },
             { "spam1@ksergey.ru", CodePassword.Decrypt(Convert.FromBase64String("qyCTG04Yy+E89MTmuU9oVA=="), "spam1@ksergey.ru") }
         };
 
-        public static Dictionary<string, int> SmtpServers { get; } = new Dictionary<string, int>
+        public static Dictionary<string, object> SmtpServers { get; } = new Dictionary<string, object>
         {
             { "smtp.yandex.ru", 25 },
             { "smtp.gmail.com", 58 },

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,16 +40,45 @@ namespace BarComboBox
 
         #endregion
 
+        #region Поля
+
+        private Dictionary<string, object> _comboBoxCollection;
+
+        #endregion
+
         #region Свойства
 
+        /// <summary>
+        /// Текст метки
+        /// </summary>
         public string LabelText
         {
             get => (string) lblHeader.Content;
             set => lblHeader.Content = value;
         }
 
-        public Dictionary<string, object> ComboBoxCollection { get; set; }
+        /// <summary>
+        /// Коллекция для отображения в комбобоксе
+        /// </summary>
+        public Dictionary<string, object> ComboBoxCollection
+        {
+            get => _comboBoxCollection;
+            set
+            {
+                _comboBoxCollection = value;
+                cbList.ItemsSource = _comboBoxCollection;
+            }
+        }
 
+        /// <summary>
+        /// Выбранный текст в комбобоксе
+        /// </summary>
+        public string SelectedKey => cbList.Text;
+
+        /// <summary>
+        /// Выбранное значение в комбобоксе
+        /// </summary>
+        public object SelectedValue => cbList.SelectedValue;
 
         #endregion
 
