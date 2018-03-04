@@ -23,7 +23,14 @@ namespace TabSwitcher
     {
         #region События
 
+        /// <summary>
+        /// Обработка нажатия кнопки Следующий
+        /// </summary>
         public event RoutedEventHandler BtnNextClick;
+
+        /// <summary>
+        /// Обработка нажатия кнопки Предыдущий
+        /// </summary>
         public event RoutedEventHandler BtnPrevClick;
 
         #endregion
