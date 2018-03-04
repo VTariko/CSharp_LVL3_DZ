@@ -56,8 +56,10 @@ namespace WpfMailSender.Logic
             if (_dtSend.ToShortTimeString() == DateTime.Now.ToShortTimeString())
             {
                 Dictionary<string, string> emails = _emails.ToDictionary(k => k.Email1, p => p.Name);
-                _emailSender.SendMail(emails);
+                string res = _emailSender.SendMail(emails);
                 _timer.Stop();
+                SendEndWindow sew = new SendEndWindow(res);
+                sew.ShowDialog();
             }
         }
     }
