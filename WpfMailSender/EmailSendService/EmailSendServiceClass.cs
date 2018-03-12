@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace EmailSendService
 {
@@ -10,6 +12,18 @@ namespace EmailSendService
     /// </summary>
     public class EmailSendServiceClass
     {
+        #region Делегаты
+
+        public delegate void ReturnResult(string res);
+
+        #endregion
+
+        #region События
+
+        public event ReturnResult ShowResultOfSend;
+
+        #endregion
+
         #region Поля
 
         /// <summary>
@@ -65,18 +79,26 @@ namespace EmailSendService
         /// Отправка писем по списку адресатов
         /// </summary>
         /// <param name="emails">Список адресатов</param>
-        public string SendMail(Dictionary<string, string> emails)
+        public void SendMail(Dictionary<string, string> emails)
         {
+            List<Task> tasks = new List<Task>();
             foreach (KeyValuePair<string, string> email in emails)
             {
-                string res = SendMail(email.Key, email.Value);
-                if (!string.IsNullOrWhiteSpace(res))
+
+                Task taskSend = new Task<string>(() =>
                 {
+                    string res = SendMail(email.Key, email.Value);
                     return res;
-                }
+                });
+                tasks.Add(taskSend);
+                taskSend.Start();
             }
 
-            return "Работа завершена!";
+            string separator = $"{Environment.NewLine}{new string('-', 40)}{Environment.NewLine}";
+            string result = tasks.Select(t => ((Task<string>) t).Result).Aggregate((currentMsg, nextMsg) =>
+                $"{currentMsg}{(!string.IsNullOrWhiteSpace(currentMsg) ? separator : "")}{nextMsg}");
+
+            ShowResultOfSend(!string.IsNullOrWhiteSpace(result) ? result : "Работа завершена!");
         }
 
         /// <summary>

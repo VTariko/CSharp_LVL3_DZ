@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Threading;
 using EmailSendService;
 
@@ -41,9 +42,11 @@ namespace WpfMailSender.Logic
         /// <param name="dtSend">Дата отправки</param>
         /// <param name="emailSender">Рассыльщик</param>
         /// <param name="emails">Адреса получателей</param>
-        public void SendEmails(DateTime dtSend, EmailSendServiceClass emailSender, IQueryable<Email> emails)
+        /// <param name="mailSender">Объект основной формы для обработки заврешения рассылки из другого потока</param>
+        public void SendEmails(DateTime dtSend, EmailSendServiceClass emailSender, IQueryable<Email> emails, MailSender mailSender)
         {
             _emailSender = emailSender;
+            emailSender.ShowResultOfSend += mailSender.SendEndWindowCreate;
             _dtSend = dtSend;
             _emails = emails;
             _timer.Tick += TimerOnTick;
@@ -55,11 +58,12 @@ namespace WpfMailSender.Logic
         {
             if (_dtSend.ToShortTimeString() == DateTime.Now.ToShortTimeString())
             {
-                Dictionary<string, string> emails = _emails.ToDictionary(k => k.Email1, p => p.Name);
-                string res = _emailSender.SendMail(emails);
-                _timer.Stop();
-                SendEndWindow sew = new SendEndWindow(res);
-                sew.ShowDialog();
+                new Thread(() =>
+                {
+                    Dictionary<string, string> emails = _emails.ToDictionary(k => k.Email1, p => p.Name);
+                    _emailSender.SendMail(emails);
+                    _timer.Stop();
+                }).Start();
             }
         }
     }
